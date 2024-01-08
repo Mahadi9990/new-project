@@ -18,6 +18,16 @@ app.use(express.json());
 
 app.use("/user",userOuth)
 
+app.use((err,req,res,next)=>{
+    const statusCode = err.statusCode || 500;
+    const message = err.message || "Internal server Error";
+    return res.status(statusCode).json({
+        success:false,
+        statusCode,
+        message
+    })
+})
+
 
 app.listen(process.env.SERVER,() =>{
     console.log('srever is running');
