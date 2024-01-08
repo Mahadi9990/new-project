@@ -1,10 +1,9 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import userOuth from './route/user.route.js';
 
 dotenv.config()
-
-
 
 mongoose.connect(process.env.MONOG_URL).then(()=>{
     console.log("Mongoose server is connect")
@@ -14,10 +13,12 @@ mongoose.connect(process.env.MONOG_URL).then(()=>{
 
 const app =express()
 
-app.get("/",(req,res)=>{
-    res.send("Hellow")
-})
+app.use(express.json());
 
-app.listen(3000,() =>{
+
+app.use("/user",userOuth)
+
+
+app.listen(process.env.SERVER,() =>{
     console.log('srever is running');
 })
