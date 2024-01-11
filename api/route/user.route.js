@@ -1,8 +1,10 @@
 import express from "express";
-import { singIn } from "../components/userOuth.js";
+import { singUp,singIn } from "../components/userOuth.js";
 
 const route =express.Router()
 
-route.post('/outh',singIn)
+route.post('/sing-up',singUp)
+route.post('/sing-in',singIn)
+
 
 export default route;

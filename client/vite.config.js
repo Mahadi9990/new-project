@@ -10,7 +10,6 @@ export default defineConfig({
     proxy:{
       '/user':{
         target:process.env.WEBSITE_ULE,
-        secure:false,
       },
     },
   },

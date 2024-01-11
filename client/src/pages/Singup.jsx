@@ -16,7 +16,7 @@ export default function Singup() {
     e.preventDefault();
     setLoading(true);
     try {
-      const res =await fetch('/user/outh',{
+      const res =await fetch('/user/sing-up',{
         method:'POST',
         headers:{
           'Content-Type':'application/json',
@@ -32,7 +32,7 @@ export default function Singup() {
       setLoading(false);
       navigate('/sing-in')
     } catch (error) {
-      setLoading(false)
+      setLoading(false);
       setError(error.message);
     }
   }

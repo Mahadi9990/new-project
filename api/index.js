@@ -3,12 +3,6 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import userOuth from './route/user.route.js';
 import cors from 'cors';
-var corsOptions = {
-    origin: process.env.WEBSITE_ULE,
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-  }
-
-
 
 dotenv.config()
 
@@ -20,8 +14,7 @@ mongoose.connect(process.env.MONOG_URL).then(()=>{
 
 const app =express();
 
-app.use(cors(corsOptions))
-
+app.use(cors())
 
 app.use(express.json());
 
@@ -40,4 +33,15 @@ app.use((err,req,res,next)=>{
 app.listen(process.env.SERVER,() =>{
     console.log('srever is running');
 });
+
+
+
+
+
+
+
+
+
+
+
 
