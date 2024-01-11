@@ -14,7 +14,7 @@ mongoose.connect(process.env.MONOG_URL).then(()=>{
 
 const app =express();
 
-app.use(cors())
+app.use(cors());
 
 app.use(express.json());
 

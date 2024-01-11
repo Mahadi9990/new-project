@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import {Link ,useNavigate} from 'react-router-dom'
-import axios from 'axios'
+import {useDispatch, useSelector} from 'react-redux';
+import { singInStart,singInFailuor,singInSuccess } from '../app/user/userSlice';
 
 export default function Singup() {
   const [formData,setFormData] =useState({})
-  const [error ,setError] =useState(null);
-  const [loading ,setLoading] =useState(false);
+  const {loading,error} =useSelector((state)=>state.user);
   const navigate =useNavigate();
+  const dispatch =useDispatch();
   const handleChange = (e)=>{
     setFormData({
       ...formData,
@@ -15,7 +16,7 @@ export default function Singup() {
   };
   const handleSubmit = async (e)=>{
     e.preventDefault();
-    setLoading(true);
+    dispatch(singInStart());
     try {
       const res =await fetch('/user/sing-in',{
         method:'POST',
@@ -27,15 +28,13 @@ export default function Singup() {
       const data =await res.json();
 
       if(data.success === false){
-        setError(data.message);
-        setLoading(false);
+        dispatch(singInFailuor(data.message));
         return
       }
-      setLoading(false);
+      dispatch(singInSuccess(data));
       navigate('/profile')
     } catch (error) {
-      setLoading(false)
-      setError(error.message);
+      dispatch(singInFailuor(error.message));
     }
   }
   return (
