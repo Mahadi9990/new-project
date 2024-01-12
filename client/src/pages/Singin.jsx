@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import {Link ,useNavigate} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux';
 import { singInStart,singInFailuor,singInSuccess } from '../app/user/userSlice';
+import OAuth from '../components/OAuth';
 
 export default function Singup() {
   const [formData,setFormData] =useState({})
@@ -44,7 +45,8 @@ export default function Singup() {
         <form action="" onSubmit={handleSubmit} className='flex flex-col text-center gap-4'>
          <input type="email" onChange={handleChange}placeholder='email' className='border rounded-lg p-3' id='email'/>
          <input type="password" onChange={handleChange}placeholder='password' className='border rounded-lg p-3' id='password'/>
-         <button disabled={loading} type="submit" className='bg-blue-700'>{loading ? 'Loading...': 'sing IN'}</button>
+         <button disabled={loading} type="submit" className='bg-blue-700 uppercase'>{loading ? 'Loading...': 'sing IN'}</button>
+            <OAuth/>
         </form>
         <p>Dont Have a Acount <span className='text-blue-500 underline'><Link to="/sing-in">SingUp</Link></span></p>
         {error && <p className='text-red-500 m-3'>{error}</p>}
