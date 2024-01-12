@@ -24,9 +24,10 @@ export const singIn =async (req,res,next) =>{
          const validPassword = bcryptjs.compareSync(password,validUser.password);
          if(!validPassword) return next(errorHandeler(401,'wrong credential'));
          const token = jwt.sign({id:validUser._id},process.env.JWTTOKEN);
-        res.cookie('access_token',token,{httpOnly:true})
+         const {password :pass,...rest} =validUser._doc
+         res.cookie('access_token',token,{httpOnly:true})
         .status(201)
-        .json(validUser)
+        .json(rest)
      } catch (error) {
         next(error);
      }
