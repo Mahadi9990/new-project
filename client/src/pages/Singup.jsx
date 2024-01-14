@@ -46,7 +46,7 @@ export default function Singup() {
          <input type="email" onChange={handleChange}placeholder='email' className='border rounded-lg p-3' id='email'/>
          <input type="password" onChange={handleChange}placeholder='password' className='border rounded-lg p-3' id='password'/>
          <button disabled={loading} type="submit" className='bg-blue-700 uppercase'>{loading ? 'Loading...': 'sing up'}</button>
-         <OAuth/>
+          <OAuth/>
         </form>
         <p>Have a Acount <span className='text-blue-500 underline'><Link to="/sing-in">SingIn</Link></span></p>
         {error && <p className='text-red-500 m-3'>{error}</p>}
