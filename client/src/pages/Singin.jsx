@@ -33,7 +33,7 @@ export default function Singup() {
         return
       }
       dispatch(singInSuccess(data));
-      navigate('/profile')
+      navigate('/')
     } catch (error) {
       dispatch(singInFailuor(error.message));
     }
@@ -41,14 +41,14 @@ export default function Singup() {
   return (
     <>
       <div className='justify-center max-w-lg mx-auto' id='main'>
-        <h1 className='text-center my-7 text-3xl uppercase'>Sing Up</h1>
+        <h1 className='text-center my-7 text-3xl uppercase'>Sing In</h1>
         <form action="" onSubmit={handleSubmit} className='flex flex-col text-center gap-4'>
          <input type="email" onChange={handleChange}placeholder='email' className='border rounded-lg p-3' id='email'/>
          <input type="password" onChange={handleChange}placeholder='password' className='border rounded-lg p-3' id='password'/>
          <button disabled={loading} type="submit" className='bg-blue-700 uppercase rounded-lg p-3'>{loading ? 'Loading...': 'sing IN'}</button>
           <OAuth/>
         </form>
-        <p>Dont Have a Acount <span className='text-blue-500 underline'><Link to="/sing-in">SingUp</Link></span></p>
+        <p>Dont Have a Acount <span className='text-blue-500 underline'><Link to="/sing-up">SingUp</Link></span></p>
         {error && <p className='text-red-500 m-3'>{error}</p>}
       </div>
     </>

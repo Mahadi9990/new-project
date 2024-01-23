@@ -2,7 +2,9 @@ import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import userOuth from './route/user.route.js';
+import userUpdate from './route/userUpdate.js';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 
 dotenv.config()
 
@@ -17,8 +19,10 @@ const app =express();
 app.use(cors());
 
 app.use(express.json());
+app.use(cookieParser());
 
 app.use("/user",userOuth);
+app.use("/user/data",userUpdate);
 
 app.use((err,req,res,next)=>{
     const statusCode = err.statusCode || 500;
