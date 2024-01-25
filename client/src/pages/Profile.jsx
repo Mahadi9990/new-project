@@ -2,6 +2,7 @@ import { useSelector } from "react-redux"
 import {useRef,useState,useEffect} from 'react';
 import {getDownloadURL, getStorage,ref, uploadBytesResumable} from 'firebase/storage';
 import {app} from '../firebase.js'
+import {Link} from 'react-router-dom'
 import {
    updateUserStart,
    updateUserSuccess,
@@ -138,6 +139,10 @@ export default function Profile() {
         <input onChange={handleUpdate} id='password' type="password" placeholder="Password" className="border rounded-lg p-3"/>
         <button disabled={loading}className="text-white bg-slate-500 rounded-lg p-3 uppercase hover:opacity-90
         disabled:opacity-85">{loading ? "Loading":"Update"}</button>
+      <Link to="/listing" className="text-white bg-green-500 rounded-lg p-3 uppercase hover:opacity-90
+        disabled:opacity-85 text-center">
+        Create Listing
+      </Link>
       </form>
       <div className="flex flex-row justify-between p-3">
         <span onClick={handleDelete}className="cursor-pointer font-semibold text-1xl text-red-600 uppercase">Delet account</span>
@@ -145,6 +150,7 @@ export default function Profile() {
       </div>
       <p>{error ? error : " "}</p>
       <p className="py-5 text-green-600 text-center">{userUpdateSuccessfuly ? 'Update user Successfully': " "}</p>
+      
     </div>
   )
 }

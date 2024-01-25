@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Profile from './pages/Profile';
 import Singin from './pages/Singin';
 import Singup from './pages/Singup';
+import Listing from './pages/listing';
 import Header from './components/Header';
 import PrivateRoute from './components/PrivateRoute';
 
@@ -20,6 +21,7 @@ export default function App() {
         </Route>
         <Route path={'/sing-in'} element={<Singin/>}/>
         <Route path={'/sing-up'} element={<Singup/>}/>
+        <Route path={'/listing'} element={<Listing/>}/>
       </Routes>
     </BrowserRouter>
   )
