@@ -18,10 +18,10 @@ export default function App() {
         <Route path={'/contact'} element={<Contact/>}/>
         <Route element={<PrivateRoute/>}>
           <Route path={'/profile'} element={<Profile/>}/>
+          <Route path={'/listing'} element={<Listing/>}/>
         </Route>
         <Route path={'/sing-in'} element={<Singin/>}/>
         <Route path={'/sing-up'} element={<Singup/>}/>
-        <Route path={'/listing'} element={<Listing/>}/>
       </Routes>
     </BrowserRouter>
   )
