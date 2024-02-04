@@ -22,3 +22,22 @@ export const deleteList =async(req,res,next)=>{
     }
 }
 
+export const updateUserList= async(req,res,next)=>{
+    const listings =await Listing.findById(req.params.id)
+    if(!listings) return next(errorHandeler(401,"List is not found"))
+    if(req.user.id !== listings.userRef) return next(errorHandeler(403,"You can update your own list"))
+    try {
+        const userlistUpdate =await Listing.findByIdAndUpdate(
+            req.params.id,
+            req.body,
+            {
+             new:true
+            }
+        )
+        res.status(201).json(userlistUpdate)
+
+    } catch (error) {
+        next(error)
+    }
+}
+

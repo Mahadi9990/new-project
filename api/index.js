@@ -26,7 +26,6 @@ app.use("/user",userOuth);
 app.use("/user/data",userUpdate);
 app.use("/user/create",createList);
 
-
 app.use((err,req,res,next)=>{
     const statusCode = err.statusCode || 500;
     const message = err.message || "Internal server Error";
