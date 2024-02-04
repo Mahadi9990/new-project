@@ -191,7 +191,9 @@ export default function Profile() {
           <p className="m-auto truncate">{listing.textArea}</p>
           <div className="flex flex-col item-center">
             <span onClick={ ()=>handleDeleteList(listing._id) } className="uppercase cursor-pointer text-red-500">delete</span>
-            <span className="uppercase cursor-pointer text-green-500">edit</span>
+            <Link to={`/update/listing/${listing._id}`}>
+              <span className="uppercase cursor-pointer text-green-500">edit</span>
+            </Link>
           </div>
         </div>
         ))}
