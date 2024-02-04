@@ -10,6 +10,4 @@ route.get('/singOut',singOut)
 
 
 
-
-
 export default route;

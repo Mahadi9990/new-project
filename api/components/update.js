@@ -1,6 +1,7 @@
 import { errorHandeler } from "../utils/error.js";
 import bcryptjs from 'bcryptjs';
 import User from '../modle/user.modle.js';
+import Listing from "../modle/creatListModle.js";
 
 export const updateUser = async(req,res,next) =>{
    if(req.user.id !== req.params.id) return next(errorHandeler(401,"you hava to authanticatit"))
@@ -33,3 +34,17 @@ export const deletUser= async(req,res,next) =>{
         next(error);
     }
 } 
+
+
+export const getUserListing =async(req,res,next) =>{
+    if(req.user.id === req.params.id){
+        try {
+            const listings =await Listing.find({userRef: req.params.id})
+            res.status(201).json(listings);
+        } catch (error) {
+            console.log(error);
+        }
+    }else{
+        return next(errorHandeler(401,'you can see your own list'))
+    }
+}

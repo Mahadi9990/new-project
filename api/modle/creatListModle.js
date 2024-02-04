@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const listSchema =mongoose.Schema({
-    titel:{
+    title:{
         type:String,
         required:true
     },
@@ -13,12 +13,8 @@ const listSchema =mongoose.Schema({
         type:String,
         required:true
     },
-    sale:{
-        type:Boolean,
-        required:true
-    },
-    rent:{
-        type:Boolean,
+    type:{
+        type:String,
         required:true
     },
     offer:{
@@ -48,6 +44,14 @@ const listSchema =mongoose.Schema({
     userRef:{
         type:String,
         required:true
+    },
+    bathroom:{
+        type:Number,
+        require:true
+    },
+    badroom:{
+        type:Number,
+        require:true
     }
 },{timestamps:true}
 )

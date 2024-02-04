@@ -7,10 +7,10 @@ import createList from './route/createList.js';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 
-dotenv.config()
+dotenv.config();
 
 mongoose.connect(process.env.MONOG_URL).then(()=>{
-    console.log("Mongoose server is connect")
+    console.log("Mongoose server is connect");
 }).catch((err)=>{
     console.log(err);
 })

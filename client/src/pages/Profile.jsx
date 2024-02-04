@@ -30,7 +30,9 @@ export default function Profile() {
   const [fileUploadError,setFileUploadError] =useState(false);
   const [formData,setFormData] =useState({})
   const dispatch =useDispatch();
+  const [showListing,setShowListing] =useState(false);
   const [userUpdateSuccessfuly,setUserUpdateSuccessfully] =useState(false);
+  const [userListings,setUserListings] =useState([])
   useEffect(()=>{
     if(file){
       handleFlieUpload(file)
@@ -117,6 +119,39 @@ export default function Profile() {
       dispatch(singOutFailuor(data.message))
     }
   }
+  const handleShowList =async ()=>{
+    try {
+      setShowListing(false)
+      const res =await fetch(`user/create/listing/${currentUser._id}`)
+      const data =await res.json()
+      if(data.success === false){
+        setShowListing(true);
+        return;
+      }
+      setUserListings(data);
+    } catch (error) {
+      setShowListing(true);
+    }
+  }
+  const handleDeleteList = async(listingId)=>{
+    try {
+      const res =await fetch(`/user/create/delete/${listingId}`,{
+        method:"DELETE"
+      })
+      const data =await res.json()
+      if(data.success === false){
+        console.log(data.message);
+        return;
+      }
+      setUserListings((prev)=>{
+        prev.filter((listing)=>{
+          listing._id !== listingId
+        })
+      })
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
   return (
     <div className='p-3 mx-auto max-w-lg'>
       <p className='text-center text-3xl font-semibold'>Profile</p>
@@ -145,12 +180,23 @@ export default function Profile() {
       </Link>
       </form>
       <div className="flex flex-row justify-between p-3">
-        <span onClick={handleDelete}className="cursor-pointer font-semibold text-1xl text-red-600 uppercase">Delet account</span>
+        <span onClick={handleDelete}className="cursor-pointer font-semibold text-1xl text-red-600 uppercase">Delete account</span>
         <span onClick={handleSingOut}className="cursor-pointer font-semibold text-1xl text-red-600 uppercase">Sing Out</span>
       </div>
+      <button onClick={handleShowList} className="text-green-600 text-2xl font-semibold w-full">Show list</button>
+      {userListings && userListings.length > 0 && 
+      userListings.map((listing)=>(
+        <div key={listing._id}className="pt-1 flex justify-between gap-3 text-center ">
+          <img className="w-20 h-20 rounded-lg" src={listing.image[0]} alt="" />
+          <p className="m-auto truncate">{listing.textArea}</p>
+          <div className="flex flex-col item-center">
+            <span onClick={ ()=>handleDeleteList(listing._id) } className="uppercase cursor-pointer text-red-500">delete</span>
+            <span className="uppercase cursor-pointer text-green-500">edit</span>
+          </div>
+        </div>
+        ))}
       <p>{error ? error : " "}</p>
-      <p className="py-5 text-green-600 text-center">{userUpdateSuccessfuly ? 'Update user Successfully': " "}</p>
-      
+      <p className="py-5 text-green-600 text-center ">{userUpdateSuccessfuly ? 'Update user Successfully': " "}</p>
     </div>
   )
 }
