@@ -1,13 +1,12 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { getDownloadURL, getStorage, uploadBytesResumable,ref } from "firebase/storage";
 import { app } from "../firebase";
 import {useSelector} from 'react-redux';
-import {useNavigate ,useParams} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 export default function Listing() {
 const {currentUser} =useSelector(state =>state.user)
 const [files,setFiles] =useState([]);
-const params =useParams();
 const navigate =useNavigate();
 const [fromData,setFromData] =useState({
 
@@ -30,21 +29,6 @@ const [imageUploadError,setImageUploadError] =useState(false);
 const [loading,setLoading] =useState(false)
 const [error,setError] =useState(false)
 const [creatListMongoose,setCreatListMongoose] =useState(false);
-
-useEffect(()=>{
-  const fetchFunction =async()=>{
-    const listingId =params.listingId
-    const res =await fetch(`/user/create/get/${listingId}`);
-    const data =await res.json();
-    if(data.success === false){
-      console.log(data.message)
-      return;
-    };
-    setFromData(data);
-  }
-  fetchFunction();
-},[]);
-
 const handleImageUpload = () =>{
   if(files.length > 0 && files.length +fromData.image.length < 4){
     setUploadButton(true);
@@ -113,7 +97,7 @@ const promises =[]
 
       setLoading(true)
       setError(false)
-      const res = await fetch(`/user/create/update/${params.listingId}`,{
+      const res = await fetch('/user/create/listing',{
         method:"POST",
         headers:{
           "Content-Type":"application/json"
@@ -136,7 +120,7 @@ const promises =[]
   }
   return (
     <div className="main">
-        <h1 className='uppercase text-5xl my-5 text-center font-semibold'>Update List</h1>
+        <h1 className='uppercase text-5xl my-5 text-center font-semibold'>Create List</h1>
       <form onSubmit={handleSubmit} className='p-5 flex flex-row justify-center items-start gap-4'>
           <div className='left-area'>
             <div className='flex flex-col gap-3'>
@@ -295,7 +279,7 @@ const promises =[]
                 )):""
               }
               <button className="text-center text-white bg-green-500 border rounded-lg p-3 uppercase hover:opacity-90
-            disabled:opacity-85">Update Listing</button>
+            disabled:opacity-85">Create Listing</button>
             {error && <p className="text-red-500 pt-3">{error}</p>}
             {creatListMongoose && <p className="text-green-500 font-semibold pt-5">Create list successfully</p>}
           </div> 

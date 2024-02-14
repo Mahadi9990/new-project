@@ -174,7 +174,7 @@ export default function Profile() {
         <input onChange={handleUpdate} id='password' type="password" placeholder="Password" className="border rounded-lg p-3"/>
         <button disabled={loading}className="text-white bg-slate-500 rounded-lg p-3 uppercase hover:opacity-90
         disabled:opacity-85">{loading ? "Loading":"Update"}</button>
-      <Link to="/listing" className="text-white bg-green-500 rounded-lg p-3 uppercase hover:opacity-90
+      <Link to="/create-listing" className="text-white bg-green-500 rounded-lg p-3 uppercase hover:opacity-90
         disabled:opacity-85 text-center">
         Create Listing
       </Link>
@@ -188,7 +188,7 @@ export default function Profile() {
       userListings.map((listing)=>(
         <div key={listing._id}className="pt-1 flex justify-between gap-3 text-center ">
           <img className="w-20 h-20 rounded-lg" src={listing.image[0]} alt="" />
-          <p className="m-auto truncate">{listing.textArea}</p>
+          <p className="m-auto truncate">{listing.title}</p>
           <div className="flex flex-col item-center">
             <span onClick={ ()=>handleDeleteList(listing._id) } className="uppercase cursor-pointer text-red-500">delete</span>
             <Link to={`/update/listing/${listing._id}`}>

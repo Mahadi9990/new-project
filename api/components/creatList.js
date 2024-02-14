@@ -41,3 +41,12 @@ export const updateUserList= async(req,res,next)=>{
     }
 }
 
+export const getList = async(req,res,next)=>{
+    try {
+        const listing =await Listing.findById(req.params.id);
+        if(!listing) return next(errorHandeler(404,'Listing is not found'));
+        res.status(200).json(listing);
+    } catch (error) {
+       next(error); 
+    }
+}
