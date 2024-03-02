@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import userOuth from './route/user.route.js';
 import userUpdate from './route/userUpdate.js';
-import createList from './route/createList.js';
+import createList from './route/createUserList.js';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 

@@ -4,12 +4,16 @@ import { Swiper, SwiperSlide} from 'swiper/react'
 import SwiperCore from 'swiper';
 import { Navigation } from 'swiper/modules';
 import 'swiper/css/bundle'
+import {useSelector} from 'react-redux'
+import ContactUser from './ContactUser';
 export default function Listing() {
   SwiperCore.use([Navigation]);
   const params =useParams()
   const [listing,setListing] =useState(null)
   const [error,setError] =useState(false)
   const [loading,setLoading] =useState(false)
+  const { currentUser } =useSelector((state)=>state.user)
+  const [contact,setContact] =useState(false)
 
   useEffect(()=>{
     const fetchFunction =async()=>{
@@ -69,6 +73,10 @@ export default function Listing() {
             {listing.parking && <li>Parking</li>}
             {listing.furnished && <li>Furnished</li>}
           </ul>
+          {currentUser && listing.userRef !== currentUser._id && !contact &&
+            <button onClick={()=>setContact(true)} className='item-center bg-slate-500 uppercase text-black rounded-lg p-3 hover:opacity-95'>Contact landloar</button>
+          }
+          {contact && <ContactUser listing={listing}/>}
         </div>
       }
     </main>
