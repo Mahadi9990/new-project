@@ -4,6 +4,8 @@ import dotenv from 'dotenv';
 import userOuth from './route/user.route.js';
 import userUpdate from './route/userUpdate.js';
 import createList from './route/createUserList.js';
+import newList from './route/newList.js';
+
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 
@@ -25,6 +27,8 @@ app.use(cookieParser());
 app.use("/user",userOuth);
 app.use("/user/data",userUpdate);
 app.use("/user/create",createList);
+app.use("/user/new",newList);
+
 
 app.use((err,req,res,next)=>{
     const statusCode = err.statusCode || 500;
