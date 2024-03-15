@@ -40,7 +40,7 @@ export default function Header() {
         <div className="right">
           <ul className='flex flex-row gap-5'>
             <li><Link to="/">Home</Link></li>
-            <li><Link to="/contact">Contact</Link></li>
+            <li><Link to="/About">About</Link></li>
             <Link to="/profile">
             {currentUser ? (<img src={currentUser.avatar} className='object-cover rounded-full w-7 h-7 '/>):
           ( <li>Sing In</li>)  
