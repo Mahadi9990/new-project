@@ -10,7 +10,7 @@ import cookieParser from 'cookie-parser';
 import path from 'path';
 
 dotenv.config();
-
+// fasdfa
 mongoose.connect(process.env.MONOG_URL).then(()=>{
     console.log("Mongoose server is connect");
 }).catch((err)=>{
