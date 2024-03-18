@@ -30,7 +30,7 @@ app.use("/user/data",userUpdate);
 app.use("/user/create",createList);
 app.use("/user/new",newList);
 
-app.use(express.static(path.join(__dirname,'/10Hour course/client/dist')))
+app.use(express.static(path.join(__dirname,'/client/dist')))
 
 app.get("*",(req,res)=>{
     res.sendFile(path.join(__dirname,'client','dist','index.html'))
