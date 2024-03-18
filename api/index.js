@@ -5,6 +5,7 @@ import userOuth from './route/user.route.js';
 import userUpdate from './route/userUpdate.js';
 import createList from './route/createUserList.js';
 import newList from './route/newList.js';
+import path from 'path'
 
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
@@ -16,6 +17,7 @@ mongoose.connect(process.env.MONOG_URL).then(()=>{
 }).catch((err)=>{
     console.log(err);
 })
+const __dirname =path.resolve();
 
 const app =express();
 
@@ -29,6 +31,11 @@ app.use("/user/data",userUpdate);
 app.use("/user/create",createList);
 app.use("/user/new",newList);
 
+app.use(express.static(path.join(__dirname,'/client/dist')))
+
+app.get("*",(req,res)=>{
+    res.sendFile(path.join(__dirname,'client','dist','index.html'))
+})
 
 app.use((err,req,res,next)=>{
     const statusCode = err.statusCode || 500;
