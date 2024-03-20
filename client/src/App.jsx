@@ -6,7 +6,7 @@ import Profile from './pages/Profile';
 import Singin from './pages/Singin';
 import Singup from './pages/Singup';
 import CreateListing from './pages/CreateListing';
-import UpdateList from './pages/UpdateList';
+import newUpdate from './pages/newUpdate';
 import Header from './components/Header';
 import PrivateRoute from './components/PrivateRoute';
 import Listing from './pages/Listing';
@@ -24,7 +24,7 @@ export default function App() {
         <Route element={<PrivateRoute/>}>
           <Route path={'/profile'} element={<Profile/>}/>
           <Route path={'/create-listing'} element={<CreateListing/>}/>
-          <Route path={'/update/listing/:listingId'} element={<UpdateList/>}/>
+          <Route path={'/update/listing/:listingId'} element={<newUpdate/>}/>
         </Route>
         <Route path={'/sing-in'} element={<Singin/>}/>
         <Route path={'/sing-up'} element={<Singup/>}/>

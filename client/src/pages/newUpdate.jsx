@@ -4,7 +4,7 @@ import { app } from "../firebase";
 import {useSelector} from 'react-redux';
 import {useNavigate ,useParams} from 'react-router-dom';
 
-export default function UpdateList() {
+export default function newUpdate() {
 const {currentUser} =useSelector(state =>state.user)
 const [files,setFiles] =useState([]);
 const params =useParams();
